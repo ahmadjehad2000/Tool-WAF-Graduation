@@ -29,11 +29,17 @@ def updateDevice():
         print("successfully updated devices via REST API")
 
 
-# def printDevices(defineDevices()):
-
-#     for i in devices:
-#         print(
-#             tabulate({"Device name": [i['device_name']], "IP": [i['host']]}, headers="keys"))
+# def printDevices():
+#     jsonobj = requests.get("http://127.0.0.1:5000/devices")
+#     if jsonobj.status_code != 200:
+#         print("Error getting devices via REST API")
+#     else:
+#         devices = jsonobj.json()
+#         for i in devices:
+#             print(i)
+#             print(tabulate([devices[i]['device_name']],
+#                   [devices[i]['device_name']], [devices[i]['host']], [devices[i]['username']], [devices[i]['password']]))
+#             print("\n")
 
 
 if __name__ == "__main__":

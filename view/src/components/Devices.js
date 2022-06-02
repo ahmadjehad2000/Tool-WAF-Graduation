@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Button from '@material-ui/core/Button'
 import Grid from "@material-ui/core/Grid";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import {green, red} from "@material-ui/core/colors";
-import CancelIcon from "@material-ui/icons/Cancel";
+// import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+// import {green, red} from "@material-ui/core/colors";
+// import CancelIcon from "@material-ui/icons/Cancel";
 import MaterialTable from "material-table";
 
 class Devices extends Component {
@@ -25,7 +25,7 @@ class Devices extends Component {
 
     fetchDevices() {
 
-        let requestUrl = process.env.REACT_APP_QUOKKA_HOST + '/devices'
+        let requestUrl = "http://127.0.0.1:5000/devices"
         fetch(requestUrl)
             .then(res => res.json())
             .then((data) => {
@@ -66,53 +66,61 @@ class Devices extends Component {
                     }}>Refresh Devices</Button>
                 </Grid>
                 <MaterialTable
-                    title="Devices with Availability, Response Time, Model, Version"
+                    title="Devices Hostname, IP and username"
                     columns={[
-                        {
-                            width: null,
-                            title: 'Status',
-                            render: rowData =>
-                                rowData.availability ?
-                                    <CheckCircleIcon style={{color: green[500]}}/>
-                                    : <CancelIcon style={{color: red[500]}}/>,
-                            customSort: (a, b) => {
-                                if( a.availability && !b.availability ) return 1;
-                                else if (a.availability === b.availability ) return 0
-                                else return -1;
-                            }
-                        },
-                        {   title: 'Name',
-                            field: 'name',
-                            defaultSort: 'asc',
-                            customSort: (a, b) => {
-                                if( a.name.toUpperCase() > b.name.toUpperCase() ) return 1;
-                                else if( a.name.toUpperCase() < b.name.toUpperCase() ) return -1;
-                                else return 0;
-                            }
-                        },
-                        { title: 'Hostname', field: 'hostname', defaultSort: 'asc' },
-                        { title: 'Vendor:OS', render: rowData => rowData.vendor + ":" + rowData.os},
-                        { title: 'IP Address', field: 'ip_address' },
-                        { title: 'Model', field: 'model' },
-                        { title: 'Version', field: 'os_version' },
-                        { title: 'Rsp Time', render: rowData =>  rowData.response_time.toFixed(3) },
-                        { title: 'Last Checked', field: 'last_heard' },
+                        // // {
+                        // //     width: null,
+                        // //     title: 'Status',
+                        // //     render: rowData =>
+                        // //         rowData.availability ?
+                        // //             <CheckCircleIcon style={{color: green[500]}}/>
+                        // //             : <CancelIcon style={{color: red[500]}}/>,
+                        // //     customSort: (a, b) => {
+                        // //         if( a.availability && !b.availability ) return 1;
+                        // //         else if (a.availability === b.availability ) return 0
+                        // //         else return -1;
+                        // //     }
+                        // },
+                        // {   title: 'Name',
+                        //     field: 'device_name',
+                        //     defaultSort: 'asc',
+                        //     customSort: (a, b) => {
+                        //         if( a.name.toUpperCase() > b.name.toUpperCase() ) return 1;
+                        //         else if( a.name.toUpperCase() < b.name.toUpperCase() ) return -1;
+                        //         else return 0;
+                        //     }
+                        //},
+                        { title: 'Device Name', field: 'device_name', defaultSort: 'asc' },
+                        // { title: 'Vendor:OS', render: rowData => rowData.vendor + ":" + rowData.os},
+                        { title: 'IP Address', field: 'host' },
+                        { title: 'Model', field: 'device_type' },
+                         { title: 'username', field: 'username' },
+                         { title: 'password', field: 'password' }
+        //                  "device_name": name,
+        // "device_type": type,
+        // "host": host,
+        // "username": user,
+        // "password": passwd
+                        // { title: 'Rsp Time', render: rowData =>  rowData.response_time.toFixed(3) },
+                        // { title: 'Last Checked', field: 'last_heard' },
                     ]}
-                    data={  Object.values(devices) }
+                     data={  Object.values(devices) }
                     options={{
                         sorting: true,
                         padding: "dense",
-                        pageSize: 10,
-                        rowStyle: (rowData) => {
-                            if(!rowData.availability) {
-                                return {color: 'red'};
-                            }
-                            else {
-                                return {color: 'chartreuse'}
-                            }
-                        },
-                        cellStyle: { fontSize: 14, }
+                        pageSize: 10
                     }}
+                    //     rowStyle: (rowData) => {
+                    //         if(!rowData.availability) {
+                    //             return {color: 'red'};
+                    //         }
+                    //         else {
+                    //             return {color: 'chartreuse'}
+                    //         }
+                    //     },
+                    //     cellStyle: { fontSize: 14, }
+                    // }}
+                    //}}
                 />
             </div>
         );
