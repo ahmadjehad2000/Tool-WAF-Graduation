@@ -41,8 +41,9 @@ def process_packet(packet):
             "method": method,
             "httpver": httpver,
             "url": url,
-            "timestamp": [currentdate, currenttime],
-            "full-packet-info": str(packetinfo)
+            "timestamp": currenttime,
+            "Date": currentdate,
+            "full-packet-info": [currentdate, str(packetinfo)]
         }
 
         updatecap(capture)
@@ -83,7 +84,7 @@ def printcap():
 
 if __name__ == "__main__":
     try:
-        sniff_scapy("wlx503eaa283690")
+        sniff_scapy("wlp0s20f0u5")
     except KeyboardInterrupt:
         print("shutting down")
         exit()

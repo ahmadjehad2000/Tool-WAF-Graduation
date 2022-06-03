@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import WafAppBar from './WafAppBar';
 import Devices from "./Devices";
 import Hosts from "./Hosts";
+import Captures from './Captures';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline'
 
@@ -25,6 +26,9 @@ class WafDashboard extends Component {
             info = <Devices dashboard={this} />;
         } else if (show === "hosts") {
             info = <Hosts dashboard={this} />;
+        }
+        else if (show === "captures") {
+            info = <Captures dashboard={this} />;
         }
 
         return (

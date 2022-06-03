@@ -25,6 +25,10 @@ function renderDevices(dashboard) {
     dashboard.setState({ show: "devices" })
 }
 
+function renderCaptures(dashboard) {
+    dashboard.setState({ show: "captures" })
+}
+
 export default function WafAppBar(props) {
     const classes = useStyles();
     const dashboard = props.dashboard;
@@ -38,6 +42,7 @@ export default function WafAppBar(props) {
                     </Typography>
                     <Button color="inherit" onClick={() => renderDevices(dashboard)}>Devices</Button>
                     <Button color="inherit" onClick={() => renderHosts(dashboard)}>Hosts</Button>
+                    <Button color="inherit" onClick={() => renderCaptures(dashboard)}>Captures</Button>
                 </Toolbar>
             </AppBar>
         </div>
